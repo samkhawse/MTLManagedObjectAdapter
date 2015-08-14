@@ -751,7 +751,7 @@ static SEL MTLSelectorWithKeyPattern(NSString *key, const char *suffix) {
 			transformer = [self.class transformerForModelPropertiesOfClass:attributes->objectClass];
 		}
 
-		if (transformer == nil && attributes->type != NULL) {
+		if (transformer == nil) {
 			transformer = [self.class transformerForModelPropertiesOfObjCType:attributes->type];
 		}
 
@@ -771,7 +771,7 @@ static SEL MTLSelectorWithKeyPattern(NSString *key, const char *suffix) {
 	invocation.target = self;
 	invocation.selector = selector;
 	[invocation invoke];
-	
+
 	__unsafe_unretained id result = nil;
 	[invocation getReturnValue:&result];
 	return result;
@@ -779,7 +779,7 @@ static SEL MTLSelectorWithKeyPattern(NSString *key, const char *suffix) {
 
 + (NSValueTransformer *)transformerForModelPropertiesOfObjCType:(const char *)objCType {
 	NSParameterAssert(objCType != NULL);
-	
+
 	return nil;
 }
 
